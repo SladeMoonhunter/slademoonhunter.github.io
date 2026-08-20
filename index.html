@@ -13,6 +13,7 @@
 
         <h1>Number: <span id="numberText">0</span></h1>
 
+        <!-- The button you click -->
         
 
         <script>
@@ -20,13 +21,14 @@
 
             function goUp() {
                 alert('You are a fish :D')
-                currentNumber = currentNumber + 1;
+                currentNumber = currentNumber + 1; // Add 1 to the number
 
+                // If the number gets to 6, reset it back to 0
                 if (currentNumber > 5) {
                     currentNumber = 0;
                 }
 
-                document.getElementById("numberText").innerText = currentNumber;
+                document.getElementById("numberText").innerText = currentNumber; // Update the page
             }
         </script>
     </body>
