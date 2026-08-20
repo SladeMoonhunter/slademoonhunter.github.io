@@ -3,24 +3,45 @@
     <head>
         <meta charset="UTF-8" />
         <title>FISH CLICKER</title>
+        <style>
+            /* Make the GIF a full-screen overlay */
+            #celebrationGif {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover; /* Stretches to perfectly fill the screen */
+                z-index: 9999;    /* Forces it to sit on top of everything else */
+                cursor: pointer;   /* Changes cursor to a pointer to show it can be clicked */
+            }
+
+            /* Styling for the fish button */
+            button {
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
-        click da fish to get to 5 points.
+        <p>Click da fish to get to 5 points.</p>
 
+        <!-- The button you click -->
         <button type="button" onclick="goUp()">
-            <img src="https://spinning.fish/fish.gif" alt="Spinning Fish" />
+            <img src="https://spinning.fish/fish.gif" alt="Spinning Fish"/> 
         </button>
 
         <h1>Number: <span id="numberText">0</span></h1>
 
-        <!-- The button you click -->
-        
+        <!-- The full-screen GIF (now with an onclick function) -->
+        <img id="celebrationGif" src="https://giphy.com" alt="Celebration GIF" onclick="dismissGif()" />
 
         <script>
             let currentNumber = 0;
 
             function goUp() {
-                alert('You are a fish :D')
                 currentNumber = currentNumber + 1; // Add 1 to the number
 
                 // If the number gets to 6, reset it back to 0
@@ -28,7 +49,24 @@
                     currentNumber = 0;
                 }
 
-                document.getElementById("numberText").innerText = currentNumber; // Update the page
+                updateDisplay();
+            }
+
+            // Function to dismiss the GIF and reset the score
+            function dismissGif() {
+                currentNumber = 0;
+                updateDisplay();
+            }
+
+            // Central function to update text and manage GIF visibility
+            function updateDisplay() {
+                document.getElementById("numberText").innerText = currentNumber; 
+
+                if (currentNumber === 5) {
+                    document.getElementById("celebrationGif").style.display = "block"; // Show full screen
+                } else {
+                    document.getElementById("celebrationGif").style.display = "none";  // Hide it
+                }
             }
         </script>
     </body>
