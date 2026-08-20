@@ -6,6 +6,28 @@
     </head>
     <body>
         click da fish
+
+        <button type="button" onclick="goUp()">
+            <img src="https://spinning.fish/fish.gif" alt="Spinning Fish" />
+        </button>
+
+        <h1>Number: <span id="numberText">0</span></h1>
+
+        
+
+        <script>
+            let currentNumber = 0;
+
+            function goUp() {
+                alert('You are a fish :D')
+                currentNumber = currentNumber + 1;
+
+                if (currentNumber > 5) {
+                    currentNumber = 0;
+                }
+
+                document.getElementById("numberText").innerText = currentNumber;
+            }
+        </script>
     </body>
 </html>
-<button type="button" onclick="alert('You are a fish :D')"><img src="https://spinning.fish/fish.gif" alt="Spinning Fish"/></button>
