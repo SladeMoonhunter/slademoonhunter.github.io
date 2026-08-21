@@ -13,8 +13,8 @@
                 width: 100vw;
                 height: 100vh;
                 object-fit: cover; /* Stretches to perfectly fill the screen */
-                z-index: 9999;    /* Forces it to sit on top of everything else */
-                cursor: pointer;   /* Changes cursor to a pointer to show it can be clicked */
+                z-index: 9999; /* Forces it to sit on top of everything else */
+                cursor: pointer; /* Changes cursor to a pointer to show it can be clicked */
             }
 
             /* Styling for the fish button */
@@ -30,19 +30,23 @@
 
         <!-- The button you click -->
         <button type="button" onclick="goUp()">
-            <img src="https://spinning.fish/fish.gif" alt="Spinning Fish"/> 
+            <img src="https://spinning.fish/fish.gif" alt="Spinning Fish" />
         </button>
 
         <h1>Number: <span id="numberText">0</span></h1>
 
         <!-- The full-screen GIF (now with an onclick function) -->
-        <img id="celebrationGif" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbsibdJQxJlvO1N3NoS5vbuJTeX0IqZM_3iAiDYFUElQ&s" alt="Celebration GIF" onclick="dismissGif()" />
+        <img
+            id="celebrationGif"
+            src=https://media.tenor.com/O5En5nELi_UAAAAj/fnaf-foxy-jumpscare.gif
+            alt="Celebration GIF"
+            onclick="dismissGif()" />
 
         <script>
             let currentNumber = 0;
 
             function goUp() {
-                currentNumber = currentNumber + 1; // Add 1 to the number
+                currentNumber = currentNumber + 1; // Add 1 to the numberA
 
                 // If the number gets to 6, reset it back to 0
                 if (currentNumber > 5) {
@@ -60,14 +64,15 @@
 
             // Central function to update text and manage GIF visibility
             function updateDisplay() {
-                document.getElementById("numberText").innerText = currentNumber; 
+                document.getElementById("numberText").innerText = currentNumber;
 
                 if (currentNumber === 5) {
                     document.getElementById("celebrationGif").style.display = "block"; // Show full screen
                 } else {
-                    document.getElementById("celebrationGif").style.display = "none";  // Hide it
+                    document.getElementById("celebrationGif").style.display = "none"; // Hide it
                 }
             }
         </script>
     </body>
 </html>
+
