@@ -1,198 +1,200 @@
-<style>
-    body {
-        background-color: darkslategray;
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding-top: 50px;
-    }
-
-    p {
-        font-size: 32px;
-        font-weight: bold;
-    }
-
-    button {
-        padding: 20px 40px;
-        font-size: 22px;
-        font-weight: bold;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        margin: 10px;
-        background-color: white;
-        color: darkslategray;
-    }
-
-    button:hover {
-        background-color: lightgray;
-    }
-
-    #prompt {
-        margin: 30px auto;
-        font-size: 24px;
-        max-width: 800px;
-    }
-
-    textarea {
-        width: 80%;
-        max-width: 800px;
-        height: 180px;
-        font-size: 20px;
-        padding: 15px;
-        border-radius: 10px;
-        border: none;
-    }
-
-    #hint {
-        margin: 25px auto;
-        font-size: 20px;
-        color: gold;
-        max-width: 800px;
-    }
-
-    #result {
-        margin-top: 20px;
-        font-size: 24px;
-        font-weight: bold;
-    }
-</style>
-
-
-
-
-
-
-<p>Learn Da Constitution :)</p>
-<p>no capital letters srry for that</p>
-<p>if ya got problems email me at sushah@tracylc.net</p>
-
-
-<button type="button" onclick="newPrompt()">Start Practice</button>
-
-<div id="prompt"></div>
-
-<textarea id="answer" placeholder="Write here"></textarea>
-
-<br />
-
-<button type="button" onclick="checkAnswer()">Check Answer</button>
-
-<div id="result"></div>
-<div id="hint"></div>
-
-<script>
-    const prompts = [
-        {
-            question: "Write the beginning of the Preamble:",
-            answer: "we the people of the united States, in order to form a more perfect union,"
-        },
-        {
-            question: "What comes after 'We the People of the United States'?",
-            answer: "in order to form a more perfect union,"
-        },
-        {
-            question: "Write the part about establishing Justice:",
-            answer: "establish justice, insure domestic tranquility,"
-        },
-        {
-            question: "Write the part about providing for the common defense:",
-            answer: "provide for the common defence, promote the general welfare,"
-        },
-        {
-            answer: "and secure the blessings of liberty to ourselves and our posterity, do ordain and establish this constitution for the united states of america."
-            question: "Write the ending of the Preamble:",
-        },
-        {
-            question: "Who is the best basketball player",
-            answer: "lebron"
-        }
-    ];
-
-    let currentPrompt;
-    let hintLevel = 0;
-
-    function cleanText(text) {
-        return text
-            .toLowerCase()
-            .replace(/[.,;:!?'"-]/g, "")
-            .replace(/\s+/g, " ")
-            .trim();
-    }
-
-    function newPrompt() {
-        const randomIndex = Math.floor(Math.random() * prompts.length);
-
-        currentPrompt = prompts[randomIndex];
-
-        hintLevel = 0;
-
-        document.getElementById("prompt").textContent = currentPrompt.question;
-
-        document.getElementById("answer").value = "";
-
-        document.getElementById("hint").textContent = "";
-
-        document.getElementById("result").textContent = "";
-    }
-
-    function checkAnswer() {
-        if (!currentPrompt) {
-            document.getElementById("result").textContent = "Click Start Practice first";
-            return;
-        }
-
-        const userAnswer = document.getElementById("answer").value;
-
-        const correctAnswer = currentPrompt.answer;
-
-        const cleanedUserAnswer = cleanText(userAnswer);
-
-        const cleanedCorrectAnswer = cleanText(correctAnswer);
-
-
-        if (cleanedUserAnswer === cleanedCorrectAnswer) {
-            document.getElementById("result").textContent = "nice one";
-
-            document.getElementById("hint").textContent = "";
-
-            return;
-        }
-
-        const correctWords = cleanedCorrectAnswer.split(" ");
-
-        const userWords = cleanedUserAnswer.split(" ");
-
-        let correctCount = 0;
-
-        for (let i = 0; i < userWords.length; i++) {
-            if (userWords[i] === correctWords[i]) {
-                correctCount++;
-            } else {
-                break;
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Constitution</title>
+        <style>
+            body {
+                background-color: darkslategray;
+                color: white;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding-top: 50px;
             }
-        }
+
+            p {
+                font-size: 32px;
+                font-weight: bold;
+            }
+
+            button {
+                padding: 20px 40px;
+                font-size: 22px;
+                font-weight: bold;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                margin: 10px;
+                background-color: white;
+                color: darkslategray;
+            }
+
+            button:hover {
+                background-color: lightgray;
+            }
+
+            #prompt {
+                margin: 30px auto;
+                font-size: 24px;
+                max-width: 800px;
+            }
+
+            textarea {
+                width: 80%;
+                max-width: 800px;
+                height: 180px;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 10px;
+                border: none;
+            }
+
+            #hint {
+                margin: 25px auto;
+                font-size: 20px;
+                color: gold;
+                max-width: 800px;
+            }
+
+            #result {
+                margin-top: 20px;
+                font-size: 24px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Learn Da Constitution :)</p>
+        <p>no capital letters srry for that</p>
+        <p>if ya got problems email me at sushah@tracylc.net</p>
+
+        <button type="button" onclick="newPrompt()">Start Practice</button>
+
+        <div id="prompt"></div>
+
+        <textarea id="answer" placeholder="Write here"></textarea>
+
+        <br />
+
+        <button type="button" onclick="checkAnswer()">Check Answer</button>
+
+        <div id="result"></div>
+        <div id="hint"></div>
+
+        <script>
+            const prompts = [
+                {
+                    question: "Write the beginning of the Preamble:",
+                    answer: "we the people of the united States, in order to form a more perfect union,"
+                },
+                {
+                    question: "What comes after 'We the People of the United States'?",
+                    answer: "in order to form a more perfect union,"
+                },
+                {
+                    question: "Write the part about establishing Justice:",
+                    answer: "establish justice, insure domestic tranquility,"
+                },
+                {
+                    question: "Write the part about providing for the common defense:",
+                    answer: "provide for the common defence, promote the general welfare,"
+                },
+                {
+                    answer: "and secure the blessings of liberty to ourselves and our posterity, do ordain and establish this constitution for the united states of america.",
+                    question: "Write the ending of the Preamble:",
+                },
+                {
+                    question: "Who is the best basketball player",
+                    answer: "lebron"
+                }
+            ];
+
+            let currentPrompt;
+            let hintLevel = 0;
+
+            function cleanText(text) {
+                return text
+                    .toLowerCase()
+                    .replace(/[.,;:!?'"-]/g, "")
+                    .replace(/\s+/g, " ")
+                    .trim();
+            }
+
+            function newPrompt() {
+                const randomIndex = Math.floor(Math.random() * prompts.length);
+
+                currentPrompt = prompts[randomIndex];
+
+                hintLevel = 0;
+
+                document.getElementById("prompt").textContent = currentPrompt.question;
+
+                document.getElementById("answer").value = "";
+
+                document.getElementById("hint").textContent = "";
+
+                document.getElementById("result").textContent = "";
+            }
+
+            function checkAnswer() {
+                if (!currentPrompt) {
+                    document.getElementById("result").textContent = "Click Start Practice first";
+                    return;
+                }
+
+                const userAnswer = document.getElementById("answer").value;
+
+                const correctAnswer = currentPrompt.answer;
+
+                const cleanedUserAnswer = cleanText(userAnswer);
+
+                const cleanedCorrectAnswer = cleanText(correctAnswer);
 
 
-        if (correctCount >= correctWords.length && userWords.length >= correctWords.length) {
-            document.getElementById("result").textContent = "seems right to me ngl";
+                if (cleanedUserAnswer === cleanedCorrectAnswer) {
+                    document.getElementById("result").textContent = "nice one";
 
-            return;
-        }
+                    document.getElementById("hint").textContent = "";
+
+                    return;
+                }
+
+                const correctWords = cleanedCorrectAnswer.split(" ");
+
+                const userWords = cleanedUserAnswer.split(" ");
+
+                let correctCount = 0;
+
+                for (let i = 0; i < userWords.length; i++) {
+                    if (userWords[i] === correctWords[i]) {
+                        correctCount++;
+                    } else {
+                        break;
+                    }
+                }
 
 
-        hintLevel++;
+                if (correctCount >= correctWords.length && userWords.length >= correctWords.length) {
+                    document.getElementById("result").textContent = "seems right to me ngl";
 
-        if (hintLevel === 1) {
-            document.getElementById("result").textContent = "try again vro";
+                    return;
+                }
 
-            document.getElementById("hint").textContent =
-                'Take a hint, seems like you need it "' + correctWords.slice(0, 3).join(" ") + '..."';
-        } else if (hintLevel === 2) {
-            document.getElementById("hint").textContent =
-                'here is a better hint lol "' + correctWords.slice(0, 6).join(" ") + '..."';
-        } else {
-            document.getElementById("hint").textContent = "my hope is gone, here is the answer:\n" + correctAnswer;
-        }
-    }
-</script>
+
+                hintLevel++;
+
+                if (hintLevel === 1) {
+                    document.getElementById("result").textContent = "try again vro";
+
+                    document.getElementById("hint").textContent =
+                        'Take a hint, seems like you need it "' + correctWords.slice(0, 3).join(" ") + '..."';
+                } else if (hintLevel === 2) {
+                    document.getElementById("hint").textContent =
+                        'here is a better hint lol "' + correctWords.slice(0, 6).join(" ") + '..."';
+                } else {
+                    document.getElementById("hint").textContent = "my hope is gone, here is the answer:\n" + correctAnswer;
+                }
+            }
+        </script>
+    </body>
+</html>
