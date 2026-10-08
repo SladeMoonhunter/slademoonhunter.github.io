@@ -39,12 +39,11 @@
             src=https://media.tenor.com/O5En5nELi_UAAAAj/fnaf-foxy-jumpscare.gif
             alt="Jumpscare GIF"
             onclick="dismissGif()" />
-         <textarea id="code_area">Enter secret code</textarea>
+         <textarea id="codearea">Enter secret code</textarea>
                 <button onclick="checkTextarea()">Submit</button>
+                     <p id="result"></p>
                                                 
-                                                
-        <script>
-            
+        <script>    
             let currentNumber = 0;
 
             function goUp() {
@@ -73,10 +72,30 @@
                     document.getElementById("jumpscare").style.display = "none"; 
                 }
             }
+            
+  
+            function checkTextarea() {
+                const enteredCode = document.getElementById("codearea").value.trim();
+                const resultText = document.getElementById("result");
+
+
+                if (enteredCode === "FISH123") {
+                    resultText.style.color = "green";
+                    resultText.innerText = "Hmph you got it right.";
+                    alert("placeholder"); 
+                } else {
+                    resultText.style.color = "red";
+                    resultText.innerText = "Stop wasting my time.";
+                }
+            }
+
+                setTimeout(() => {
+                    resultText.innerText = "";
+                }, 3000); 
+            }
         </script>
     </body>
 </html>
 
-i lowkey dont know how i made this
-also why are u reading the code?
-u gonna mess with my game????
+idk how i made ts
+
