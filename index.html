@@ -1,101 +1,87 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>FISH CLICKER</title>
-        <style>
-            
-            #jumpscare {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                object-fit: cover;
-                z-index: 9999;
-                cursor: pointer;
-            }
-            
-            button {
-                background-color: #233733;
-                border: dotted;
-                cursor: crosshair;
-            }
-        </style>
-    </head>
-    <body style="background-color: azure">
-        <p>Click da fish to get to 5 points.</p>
-        <p>Made by Sulaiman :3</p>
-       
-        <button type="button" onclick="goUp()">
-            <img src="https://spinning.fish/fish.gif" alt="Spinning Fish" />
-        </button>
+<head>
+    <meta charset="UTF-8" />
+    <title>FISH CLICKER</title>
+    <style>
+        #jumpscare {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 9999;
+            cursor: pointer;
+        }
+        button {
+            background-color: #233733;
+            border: dotted;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body style="background-color: azure">
+    <p>Click da fish to get to 5 points.</p>
+    <p>Made by Sulaiman :3</p>
+    
+    <button type="button" onclick="goUp()">
+        <img src="https://spinning.fish/fish.gif" alt="Spinning Fish" />
+    </button>
+    
+    <h1>Number: <span id="numberText">0</span></h1>
+    
+    <img id="jumpscare" src="https://tenor.com" alt="Jumpscare GIF" onclick="dismissGif()" />
+    
+    <br><br>
+    <textarea id="codearea">Enter secret code</textarea>
+    <button onclick="checkTextarea()">Submit</button>
+    <p id="result"></p>
 
-        <h1>Number: <span id="numberText">0</span></h1>
+    <script>
+        let currentNumber = 0;
 
-        <img
-            id="jumpscare"
-            src=https://media.tenor.com/O5En5nELi_UAAAAj/fnaf-foxy-jumpscare.gif
-            alt="Jumpscare GIF"
-            onclick="dismissGif()" />
-         <textarea id="codearea">Enter secret code</textarea>
-                <button onclick="checkTextarea()">Submit</button>
-                     <p id="result"></p>
-                                                
-        <script>    
-            let currentNumber = 0;
-
-            function goUp() {
-                currentNumber = currentNumber + 1; 
-
-                if (currentNumber > 5) {
-                    currentNumber = 0;
-                }
-
-                updateDisplay();
-            }
-
-
-            function dismissGif() {
+        function goUp() {
+            currentNumber = currentNumber + 1;
+            if (currentNumber > 5) {
                 currentNumber = 0;
-                updateDisplay();
             }
+            updateDisplay();
+        }
 
+        function dismissGif() {
+            currentNumber = 0;
+            updateDisplay();
+        }
 
-            function updateDisplay() {
-                document.getElementById("numberText").innerText = currentNumber;
-
-                if (currentNumber === 5) {
-                    document.getElementById("jumpscare").style.display = "block"; 
-                } else {
-                    document.getElementById("jumpscare").style.display = "none"; 
-                }
+        function updateDisplay() {
+            document.getElementById("numberText").innerText = currentNumber;
+            if (currentNumber === 5) {
+                document.getElementById("jumpscare").style.display = "block";
+            } else {
+                document.getElementById("jumpscare").style.display = "none";
             }
+        }
+
+        function checkTextarea() {
+            const enteredCode = document.getElementById("codearea").value.trim();
+            const resultText = document.getElementById("result");
             
-  
-            function checkTextarea() {
-                const enteredCode = document.getElementById("codearea").value.trim();
-                const resultText = document.getElementById("result");
-
-
-                if (enteredCode === "FISH123") {
-                    resultText.style.color = "green";
-                    resultText.innerText = "Hmph you got it right.";
-                    alert("placeholder"); 
-                } else {
-                    resultText.style.color = "red";
-                    resultText.innerText = "Stop wasting my time.";
-                }
+            if (enteredCode === "FISH123") {
+                resultText.style.color = "green";
+                resultText.innerText = "Hmph you got it right.";
+                alert("placeholder");
+            } else {
+                resultText.style.color = "red";
+                resultText.innerText = "Stop wasting my time.";
             }
 
-                setTimeout(() => {
-                    resultText.innerText = "";
-                }, 3000); 
-            }
-        </script>
-    </body>
+          
+            setTimeout(() => {
+                resultText.innerText = "";
+            }, 3000);
+        }
+    </script>
+</body>
 </html>
-
-idk how i made ts
-
